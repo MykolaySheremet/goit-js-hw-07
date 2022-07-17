@@ -3,7 +3,7 @@ import { galleryItems } from './gallery-items.js';
 
 const divOfGallery = document.querySelector('.gallery');
 
-const renderItemsGallery = (pictures) => galleryItems.map(({ original, preview, description }) =>
+const renderItemsGallery = (pictures) => pictures.map(({ original, preview, description }) =>
   `<div class="gallery__item">
       <a class="gallery__link" href="${original}">
       <img
@@ -18,24 +18,39 @@ divOfGallery.insertAdjacentHTML('afterbegin', renderItemsGallery(galleryItems));
 
 divOfGallery.addEventListener('click', bigImage);
 
+
+
 function bigImage(e) {
   e.preventDefault();
   if (e.target.nodeName !== 'IMG') {
-    return
+    return;
   };
-  
+
   const instance = basicLightbox.create(
     `<img src="${e.target.dataset.source}"  alt="${e.target.description}"/>`,
   );
-  instance.show()
+  instance.show();
   
   window.addEventListener('keydown', closePressEsp);
-
+ 
   function closePressEsp(e) {
     if (e.code === "Escape") {
-  instance.close()   
-    }
+      window.removeEventListener('keydown', closePressEsp)
+      instance.close()
+      console.log("input ESC", e.code)
+      return
+    };
+    console.log("input", e.code)
+    return
   }
-  
-}
+};
+
+
+
+
+
+
+
+
+
 
