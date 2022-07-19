@@ -25,11 +25,13 @@ function bigImage(e) {
   if (e.target.nodeName !== 'IMG') {
     return;
   };
-
+  
   const instance = basicLightbox.create(
     `<img src="${e.target.dataset.source}"  alt="${e.target.description}"/>`,
   );
+  
   instance.show();
+
   
   window.addEventListener('keydown', closePressEsp);
  
@@ -37,11 +39,8 @@ function bigImage(e) {
     if (e.code === "Escape") {
       window.removeEventListener('keydown', closePressEsp)
       instance.close()
-      console.log("input ESC", e.code)
       return
-    };
-    console.log("input", e.code)
-    return
+    }
   }
 };
 
