@@ -11,18 +11,8 @@ const renderItemsGallery = (pictures) => galleryItems.map(({ original, preview, 
 
 listOfGallery.insertAdjacentHTML('afterbegin', renderItemsGallery(galleryItems));
 
-listOfGallery.addEventListener('click', bigImage);
-
-function bigImage(e) {
-    e.preventDefault();
-
-    if (e.target.nodeName !== 'IMG') {
-        return;
-    };
-
-    const lightbox = new SimpleLightbox('.gallery a', {
+const lightbox = new SimpleLightbox('.gallery a', {
         captionsData: 'alt',
         captionDelay: 250,
-    });
-}
+    })
 
